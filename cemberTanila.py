@@ -19,14 +19,14 @@ def cemberTanila():
         edge = cv2.Canny(frameBlur, 50, 120)
         edgeDilate = cv2.dilate(edge, cv2.getStructuringElement(cv2.MORPH_RECT,(2,2)))   
         frameCopy = cv2.cvtColor(frameBlur, cv2.COLOR_GRAY2BGR) 
-        circles = cv2.HoughCircles(edgeDilate,cv2.HOUGH_GRADIENT, 1, 20, param1=50,param2=75,minRadius=25,maxRadius=0)
+        circles = cv2.HoughCircles(edgeDilate,cv2.HOUGH_GRADIENT, 1, 20, param1=100,param2=100,minRadius=25,maxRadius=0)
         
         if circles is not None:
             waitingCount = 0
             circles = np.uint16(np.around(circles))
             for c in circles[0]:
             #while (True):
-                #cv2.circle(frameCopy,(c[0],c[1]),c[2],(0,255,0),2)
+                cv2.circle(frameCopy,(c[0],c[1]),c[2],(0,255,0),2)
                 #print("x: ", c[0], "y: ", c[1])
                 if(c[0] - (windowWidth/2) > 0):
                     gucVer(0, 1, 0, 0) #saga dönüs yap
@@ -50,7 +50,10 @@ def cemberTanila():
                 value = False
                 returnValue = False #cember bulunamadi
         
-        #cv2.imshow("frame", frameCopy)
+        cv2.imshow("frame", frameCopy)            
+        cv2.waitKey(20)
+        #if keyboard == 'q' or keyboard == 27:
+        #    break
     
     cap.release()
     cv2.destroyAllWindows()
