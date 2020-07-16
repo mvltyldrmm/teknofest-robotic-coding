@@ -5,10 +5,10 @@ def main():
     count = 0
     ret = gorev1()
     for boolRet in ret:
-        if(boolRet == True):
-            count = count + 1
-    print("Tanilanan cember sayisi: ", count)
-    if (count == 3):
+        if boolRet == True:
+            print "cember Tanimlandi ve gorev1 Basarili."
+            count = 1
+    if (count == 1):
         gorev2()
     return True
     

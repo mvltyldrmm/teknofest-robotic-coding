@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 from gucVer import *
 from ilerle import *
-
+from motor import *
 def cemberTanila():
     cap = cv2.VideoCapture(0)
     value = True
@@ -29,13 +29,13 @@ def cemberTanila():
                 cv2.circle(frameCopy,(c[0],c[1]),c[2],(0,255,0),2)
                 #print("x: ", c[0], "y: ", c[1])
                 if(c[0] - (windowWidth/2) > 0):
-                    gucVer(0, 1, 0, 0) #saga dönüs yap
+                    sag() #saga dönüs yap
                 if(c[0] - (windowWidth/2) < 0):
-                    gucVer(1, 0, 0, 0) #sola dönüs yap
+                    sol() #sola dönüs yap
                 if(c[1] - (windowHeight/2) > 0):
-                    gucVer(0, 0, 1, 0) #asagi yönel
+                    asagi() #asagi yönel
                 if(c[1] - (windowHeight/2) < 0):
-                    gucVer(0, 0, 0, 1) #yukari yönel
+                    yukari() #yukari yönel
                 if(c[2] < windowHeight or c[2] < windowWidth):
                     ilerle() #cemberden gecene kadar ileri güc ver
                 if(c[2] > windowHeight/2 or c[2] > windowWidth/2):
@@ -44,6 +44,9 @@ def cemberTanila():
                     returnValue = True
                     value = False #cemberden gecildi donguden cik
         else:
+            #CEMBER BULUNAMADİ. BURAYA ROBOTUN FARAZİ OLARAK HAVUZDA GEZECEGİ KODLAR GELEBİLİR.
+
+
             waitingCount = waitingCount + 1
             print("Bekleniyor... ", waitingCount)
             if(waitingCount == 200):
